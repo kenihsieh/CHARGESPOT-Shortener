@@ -7,8 +7,9 @@ import { QRCodeSVG } from 'qrcode.react'
 
 // 初始化 Supabase
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
-const supabase = createClient(supabaseUrl, supabaseAnonKey)
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''// 清除網址尾端可能的斜線與異常字元，確保路徑乾淨
+const cleanUrl = supabaseUrl?.replace(/\/+$/, '');
+const supabase = createClient(cleanUrl, supabaseAnonKey);
 
 const BASE_URL = process.env.NEXT_PUBLIC_SHORT_LINK_BASE_URL || 'https://go.charge-spot.tw'
 
